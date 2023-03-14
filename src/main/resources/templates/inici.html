@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Botones con imágenes</title>
+        <style>
+            /* Estilos para los botones */
+            .boton {
+                display: inline-block;
+                padding: 10px;
+                border-radius: 10px;
+                border: none;
+                color: white;
+                font-size: 20px;
+                text-align: center;
+                margin: 10px;
+                cursor: pointer;
+            }
+            /* Estilos para jugadores */
+            .jugadors {
+                background-color: #008CBA;
+            }
+            .jugadors:hover{
+                background-color: #006A8D;
+            }
+            /* Estilos para equipos */
+            .equips {
+                background-color: #FF007C;
+            }
+            .equips:hover{
+                background-color: #B9005A;
+            }
+            /* Estilos para modulos de la erp */
+            .erp {
+                background-color: #00FFD8;
+            }
+            .erp:hover{
+                background-color: #00CAAB;
+            }
+            /* Estilos para usuarios erp */
+            .usuaris {
+                background-color: #FF9E00;
+            }
+            .usuaris:hover{
+                background-color: #C07700;
+            }
+            /* Estilos para las imágenes encima de los botones */
+            .imagen {
+                display: block;
+                margin: 0 auto;
+                width: 50px;
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <br><br><br><br><br><br><br><br>
+        <!-- Fila superior de botones -->
+        <div style="text-align:center;">
+            <a href="iniciJugadors">
+                <button class="boton jugadors" style="height:140px; width:250px">
+                    <img style="height:100px; width:auto" class="imagen" src="imatges/jugador.png">
+                    Jugadors
+                </button>
+            </a>
+            <a href="iniciEquips">
+            <button class="boton equips" style="height:140px; width:250px">
+                <img style="height:100px; width:auto" class="imagen" src="imatges/equip.png">
+                Equips
+            </button>
+            </a>
+        </div>
+        <br><br><br><br>
+        <!-- Fila inferior de botones -->
+        <div style="text-align:center;">
+            <a href="iniciErp">
+            <button class="boton erp" style="height:140px; width:250px">
+                <img style="height:100px; width:auto" class="imagen" src="imatges/erp.png">
+                Ajustes ERP
+            </button>
+            </a>
+            <a href="iniciErpUsuaris">
+                <button class="boton usuaris" style="height:140px; width:250px">
+                    <img style="height:100px; width:auto" class="imagen" src="imatges/usuarios.png">
+                    Usuarios
+                </button>
+            </a>
+        </div>
+    </body>
+</html>

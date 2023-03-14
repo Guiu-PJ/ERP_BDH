@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jugadors</title>
+    <style>
+      /* Estilo de la barra de herramientas */
+      .toolbar {
+        background-color: #00CCE5;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+      }
+      
+      /* Estilo del logo */
+      .logo {
+        width: 75px;
+        height: 75px;
+        margin-right: 5px;
+      }
+      
+      /* Estilo img perfil */
+      .imgPerfil {
+        width: 75px;
+        height: 75px;
+        margin-right: 10px;
+      }
+      
+      /* Estilo de la tabla */
+      table {
+        border-collapse: collapse;
+        width: 75%;
+        
+      }
+      
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <!-- Logo -->
+      <a href="inici">
+      <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
+      <a href="perfil">
+      <img style="position: relative; left: 1525%; " src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
+      <!-- Contenido de la barra de herramientas -->
+    </div>
+    <br><br>
+  <center>
+      <label for="categoria">Categoria:</label>
+                <input type="text" id="categoria" name="categoria" placeholder="Escriu la categoria">
+                <label style="margin-left: 100px;" for="any">Any neixament:</label>
+                <input type="text" id="any" name="any" placeholder="Escriu l'any de naixement">
+                <button style="margin-left: 100px; background-color: #00CCE5; height:30px; width:100px; cursor: pointer"> Aplicar filtres </button>
+                <br><br>
+    <table>
+      <tr>
+        <th>Nom i cognoms</th>
+        <th>Categoria</th>
+        <th>Número</th>
+        <th>Any neixament</th>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>Senior</td>
+        <td>30</td>
+        <td>2003</td>
+      </tr>
+      <tr>
+        <td>Jane Smith</td>
+        <td>Infantil</td>
+        <td>25</td>
+        <td>2007</td>
+      </tr>
+      <tr>
+        <td>Bob Johnson</td>
+        <td>Juvenil</td>
+        <td>40</td>
+        <td>2006</td>
+      </tr>
+    </table>
+        <a href="nuevoJugador">
+        <button style="cursor: pointer; position: absolute;top: 90%; background-color: #00CCE5; height:30px; width:100px"> Jugador nou </button>
+        </a>
+  </center>
+  </body>
+</html>
