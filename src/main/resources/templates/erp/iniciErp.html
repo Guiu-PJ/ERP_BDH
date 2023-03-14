@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UsuarisErp</title>
+        <style>
+            /* Estilo de la barra de herramientas */
+            .toolbar {
+                background-color: #00FFD8;
+                padding: 30px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Estilo del logo */
+            .logo {
+                width: 75px;
+                height: 75px;
+                margin-right: 5px;
+            }
+
+            /* Estilo img perfil */
+            .imgPerfil {
+                width: 75px;
+                height: 75px;
+                margin-right: 10px;
+            }
+
+            /* Estilo de la tabla */
+            table {
+                border-collapse: collapse;
+                width: 75%;
+
+            }
+
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="toolbar">
+            <!-- Logo -->
+            <a href="inici">
+                <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
+            <a href="perfil">
+                <img style="position: relative; left: 1525%; " src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
+            <!-- Contenido de la barra de herramientas -->
+        </div>
+        <br><br>
+    <center>
+        <table>
+            <tr>
+                <th>Mòdul</th>
+                <th>Jugadors</th>
+            </tr>
+            <tr>
+                <td>Jugadors</td>
+                <td><input type="checkbox" name="permisJugadors"><br></td>
+            </tr>
+            <tr>
+                <td>Equips</td>
+                <td><input type="checkbox" name="permisEquips"><br></td>
+            </tr>
+            <tr>
+                <td>Entrenadors</td>
+                <td><input type="checkbox" name="permisEntrenadors"><br></td>
+            </tr>
+            <tr>
+                <td>ERP</td>
+                <td><input type="checkbox" name="permisErp"><br></td>
+            </tr>
+        </table>
+        <br><br><br>
+        <a href="inici">
+            <button style="background-color: #4CAF50">Guardar</button>
+        </a>
+    </center>
+</body>
+</html>

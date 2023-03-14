@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registro de Nuevo Jugador</title>
+        <style>
+            .container {
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 600px;
+                margin: 0 auto;
+                margin-top: 50px;
+                border-radius: 10px;
+            }
+
+            /* Estilo de la barra de herramientas */
+            .toolbar {
+                background-color: #FF00B9;
+                padding: 30px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Estilo del logo */
+            .logo {
+                width: 75px;
+                height: 75px;
+                margin-right: 5px;
+            }
+
+            /* Estilo img perfil */
+            .imgPerfil {
+                width: 75px;
+                height: 75px;
+                margin-right: 15px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            label {
+                display: block;
+                margin-top: 10px;
+            }
+
+            input[type=text], input[type=number], input[type=date] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="toolbar">
+            <!-- Logo -->
+            <a href="inici">
+                <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
+            <a href="perfil">
+                <img style="position: relative; left: 1400%; " src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
+            <!-- Contenido de la barra de herramientas -->
+        </div>
+        <!--Deixo al action de guardar gos ja que si no hi ha res dona error al entrar en el formulari-->
+
+        <div class="container">
+            <form th:action="@{/guardarGos}" method="post" th:object="${gos}">
+                <h1>Registrar Equip</h1>
+                <label for="categoria">Categoria:</label>
+                <input type="text" id="categoria" name="categoria" placeholder="Escriu la categoria">
+
+                <label for="entrenador">Entrenador:</label>
+                <select id="entrenador" name="entrenador">
+                    <option>John Doe</option>
+                    <option>Jane Smith</option>
+                    <option>Bob Johnson</option>
+                </select>
+                <button>Enviar</button>
+            </form>
+            <a href="iniciEquips">
+                <button style="background-color: #FF3200">Cancel·lar</button>
+                <button style="background-color: #FF3200">Eliminar</button>
+            </a>
+        </div>
+
+    </body>
+</html>

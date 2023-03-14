@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perfil</title>
+        <style>
+            .container {
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 800px;
+                margin: 0 auto;
+                margin-top: 50px;
+                border-radius: 10px;
+            }
+            /* Estilo de la barra de herramientas */
+            .toolbar {
+                background-color: #97FF00;
+                padding: 30px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Estilo del logo */
+            .logo {
+                width: 75px;
+                height: 75px;
+                margin-right: 5px;
+            }
+
+            /* Estilo img perfil */
+            .imgPerfil {
+                width: 75px;
+                height: 75px;
+                margin-right: 10px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            label {
+                margin-top: 10px;
+            }
+
+            p {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="toolbar">
+            <!-- Logo -->
+            <a href="inici">
+                <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
+            <img style="position: absolute;left: 93%;" src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil">
+            <!-- Contenido de la barra de herramientas -->
+        </div>
+    <center>
+        <div class="container">
+            <h1>Perfil</h1>
+            <p><b><label for="adreca">Adreça:</label></b>
+                1234 Carrer de la Meva Adreça
+
+                <b><label style="margin-left: 250px" for="nom_cognoms">Nom i Cognoms:</label></b>
+                John Doe</p>
+            <hr size=5 color="#000000">
+
+            <p><b><label for="any_naixement">Any de Naixement:</label></b>
+                01/01/2000
+
+                <b><label style="margin-left: 300px" for="dni">DNI:</label></b>
+                12345678A</p>
+            <hr size=5 color="#000000">
+
+            <p><b><label for="telefon">Número de Telèfon:</label></b>
+                123456789
+
+                <b><label style="margin-left: 295px" for="categoria">Categoria:</label></b>
+                Infantil</p>
+            <hr size=5 color="#000000">
+
+            <p><b><label for="numero">Número:</label></b>
+                10
+
+                <b><label style="margin-left: 425px" for="quota">Quota:</label></b>
+                100€</p>
+            <hr size=5 color="#000000">
+
+            <p ><b><label for="tutor_legal">Tutor Legal:</label></b>
+                Jane Doe</p>
+            <a href="editarPerfil">
+                <button type="submit">Editar Perfil</button></a>
+        </div>
+    </center>
+</body>
+</html>

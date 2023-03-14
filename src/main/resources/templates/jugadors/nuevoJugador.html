@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registro de Nuevo Jugador</title>
+        <style>
+            .container {
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 600px;
+                margin: 0 auto;
+                margin-top: 50px;
+                border-radius: 10px;
+            }
+
+            /* Estilo de la barra de herramientas */
+            .toolbar {
+                background-color: #00CCE5;
+                padding: 30px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Estilo del logo */
+            .logo {
+                width: 75px;
+                height: 75px;
+                margin-right: 5px;
+            }
+
+            /* Estilo img perfil */
+            .imgPerfil {
+                width: 75px;
+                height: 75px;
+                margin-right: 15px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            label {
+                display: block;
+                margin-top: 10px;
+            }
+
+            input[type=text], input[type=number], input[type=date] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="toolbar">
+            <!-- Logo -->
+            <a href="inici">
+                <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
+            <a href="perfil">
+                <img style="position: relative; left: 1400%; " src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
+            <!-- Contenido de la barra de herramientas -->
+        </div>
+        <!--Deixo al action de guardar gos ja que si no hi ha res dona error al entrar en el formulari-->
+
+        <div class="container">
+            <form th:action="@{/guardarGos}" method="post" th:object="${gos}">
+                <h1>Registrar Jugador</h1>
+                <label for="adreca">Adreça:</label>
+                <input type="text" id="adreca" name="adreca" placeholder="Escriu la adreça">
+
+                <label for="nom_cognoms">Nom i Cognoms:</label>
+                <input type="text" id="nom_cognoms" name="nom_cognoms" placeholder="Escriu el nom y cognoms">
+
+                <label for="any_naixement">Any de Naixement:</label>
+                <input type="date" id="any_naixement" name="any_naixement">
+
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni" placeholder="Escriu el DNI">
+
+                <label for="telefon">Número de Telèfon:</label>
+                <input type="number" id="telefon" name="telefon" placeholder="Escriu el número de telèfon">
+
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria">
+                    <option value="infantil">Infantil</option>
+                    <option value="juvenil">Juvenil</option>
+                    <option value="senior">Senior</option>
+                </select>
+
+                <label for="numero">Número:</label>
+                <input type="number" id="numero" name="numero" placeholder="Escriu el teu dorsal">
+
+                <label for="quota">Quota:</label>
+                <input type="number" id="quota" name="quota" placeholder="Escriu la quota que pagara el jugador">
+
+                <label for="tutor_legal">Tutor Legal:</label>
+                <input type="text" id="tutor_legal" name="tutor_legal" placeholder="Escriu el nom del tutor legal">
+                <button>Enviar</button>
+            </form>
+            <a href="iniciJugadors">
+                <button style="background-color: #FF3200">Cancel·lar</button>
+            </a>
+            <button style="background-color: #FF3200">Eliminar</button>
+        </div>
+    </body>
+</html>
