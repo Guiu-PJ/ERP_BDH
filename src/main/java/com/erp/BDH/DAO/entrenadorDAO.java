@@ -4,15 +4,14 @@
  */
 package com.erp.BDH.DAO;
 
-import java.util.List;
-import com.erp.BDH.model.Jugador;
+import com.erp.BDH.model.Entrenador;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author guiup
- * extends CrudRepository<Jugador,String>
+ * extends CrudRepository<Entrenador,String>
  */
-public interface jugadorsDAO extends CrudRepository<Jugador, String> {
-    List<Jugador> findBycategoria(String categoria);
+public interface entrenadorDAO extends CrudRepository<Entrenador, String>{
+    
 }

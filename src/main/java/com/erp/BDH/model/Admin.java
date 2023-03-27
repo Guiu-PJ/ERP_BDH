@@ -4,13 +4,19 @@
  */
 package com.erp.BDH.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import java.io.Serializable;
+import lombok.Data;
+
 /**
  *
  * @author guiup
  */
-public class Admin extends Usuari{
 
-    public Admin() {
-    }
-    
+@Data
+@Entity
+@Table(name = "admin")
+public class Admin extends Usuari implements Serializable {
+    private static final long serialVersionUID = 1L;
 }

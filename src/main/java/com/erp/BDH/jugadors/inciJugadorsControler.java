@@ -4,7 +4,11 @@
  */
 package com.erp.BDH.jugadors;
 
+import com.erp.BDH.DAO.jugadorsDAO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -12,16 +16,18 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author guiup
  */
 @Controller
+@Slf4j
 public class inciJugadorsControler {
-    
-    /*A l'anotació @GetMapping li passem per paràmetre l'URL on volem que es retorni la resposta,
-    *en el nostre cas, localhost:8080/paginaEstatica (només s'escriu la ruta a partir del domini)
-    *
-    *Aquesta anotació indica al sistema que el mètode que s'ha fet servir per fer la petició al 
-    *servidor és el mètode GET, el qual li demana al servidor quin és el recurs vol que li retorni.
-    */
-   @GetMapping("/iniciJugadors")
-    public String inici(){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
+
+    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosDAO al controlador
+    private jugadorsDAO jugadorsDAO; //Atribut per poder utilitzar les funcions CRUD de la interfície GosDAO
+
+    @GetMapping("/iniciJugadors")
+    public String inici(Model model) {
+
+        model.addAttribute("jugadors", jugadorsDAO.findAll());
+
+        //Aquest és el mètode que generarà la resposta (recurs a retornar)
         //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
         return "jugadors/iniciJugadors"; //Retorn de la pàgina iniciEstatic.html.
     }

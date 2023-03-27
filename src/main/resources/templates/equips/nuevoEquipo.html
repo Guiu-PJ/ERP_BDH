@@ -102,11 +102,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <input type="text" id="categoria" name="categoria" placeholder="Escriu la categoria">
 
                 <label for="entrenador">Entrenador:</label>
-                <select id="entrenador" name="entrenador">
-                    <option>John Doe</option>
-                    <option>Jane Smith</option>
-                    <option>Bob Johnson</option>
-                </select>
+                <form>
+                    <select>
+                        <option th:each="entrenadors : ${entrenadors}" th:value="${entrenadors.nom}" th:text="${entrenadors.nom}"></option>
+                    </select>
+                </form>
                 <button>Enviar</button>
             </form>
             <a href="iniciEquips">

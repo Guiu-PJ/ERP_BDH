@@ -4,10 +4,20 @@
  */
 package com.erp.BDH.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import java.io.Serializable;
+import lombok.Data;
+
 /**
  *
  * @author guiup
  */
-public class Entrenador extends Client{
+@Data
+@Entity
+@Table(name = "entrenadors")
+public class Entrenador extends Client implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     public Double salari;
 }

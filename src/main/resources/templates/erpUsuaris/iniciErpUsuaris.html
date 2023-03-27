@@ -47,6 +47,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         background-color: #f2f2f2;
       }
     </style>
+    
   </head>
   <body>
     <div class="toolbar">
@@ -66,24 +67,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <th>Sou</th>
         <th>Any neixament</th>
       </tr>
-      <tr>
-        <td>John Doe</td>
-        <td>345 65 00 43</td>
-        <td>300</td>
-        <td>2003</td>
-      </tr>
-      <tr>
-        <td>Jane Smith</td>
-        <td>435 76 99 56</td>
-        <td>250</td>
-        <td>2007</td>
-      </tr>
-      <tr>
-        <td>Bob Johnson</td>
-        <td>123 65 76 78</td>
-        <td>400</td>
-        <td>2006</td>
-      </tr>
+      <tr th:each="entrenadors : ${entrenadors}"> 
+                    <td th:text="${entrenadors.nom}" onclick="editarEntreanador()" ></td> 
+                    <td th:text="${entrenadors.numContacte}"></td>
+                    <td th:text="${entrenadors.salari}"></td> 
+                    <td th:text="${entrenadors.anyNaixement}"></td> 
+                    
+                </tr>
     </table>
         <a href="nuevoEntrenador">
         <button style="cursor: pointer; position: absolute;top: 90%; background-color: #FF7C16; height:30px; width:120px"> Entrenador nou </button>

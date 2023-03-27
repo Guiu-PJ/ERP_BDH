@@ -114,11 +114,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <input type="number" id="telefon" name="telefon" placeholder="Escriu el número de telèfon">
 
                 <label for="categoria">Categoria:</label>
-                <select id="categoria" name="categoria">
-                    <option value="infantil">Infantil</option>
-                    <option value="juvenil">Juvenil</option>
-                    <option value="senior">Senior</option>
-                </select>
+                <form>
+                    <select>
+                        <option th:each="equips : ${equips}" th:value="${equips.categoria}" th:text="${equips.categoria}"></option>
+                    </select>
+                </form>
 
                 <label for="numero">Número:</label>
                 <input type="number" id="numero" name="numero" placeholder="Escriu el teu dorsal">
