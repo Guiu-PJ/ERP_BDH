@@ -18,7 +18,7 @@ abstract class Client extends Usuari implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String adreca;
-    private int anyNaixement;
-    private int numContacte;
+    private String any_naixement;
+    private String num_contacte;
 
 }

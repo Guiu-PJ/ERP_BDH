@@ -5,6 +5,7 @@
 package com.erp.BDH.DAO;
 
 import com.erp.BDH.model.Entrenador;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,5 @@ import org.springframework.data.repository.CrudRepository;
  * extends CrudRepository<Entrenador,String>
  */
 public interface entrenadorDAO extends CrudRepository<Entrenador, String>{
-    
+    List<Entrenador> findBydni(String dni);
 }

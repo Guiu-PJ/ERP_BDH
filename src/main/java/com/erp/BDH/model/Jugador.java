@@ -27,7 +27,7 @@ public class Jugador extends Client implements Serializable{
     private String categoria;
     private String numero;
     private double quota;
-    private String tutorLegal;
+    private String tutor_legal;
 
     
 //    @ManyToOne(

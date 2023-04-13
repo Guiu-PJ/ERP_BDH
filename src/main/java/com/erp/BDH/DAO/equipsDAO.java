@@ -5,6 +5,7 @@
 package com.erp.BDH.DAO;
 
 import com.erp.BDH.model.Equip;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,5 @@ import org.springframework.data.repository.CrudRepository;
  * extends CrudRepository<Equip,String>
  */
 public interface equipsDAO extends CrudRepository<Equip, String>{
-    
+    List<Equip> findBycategoria(String categoria);
 }

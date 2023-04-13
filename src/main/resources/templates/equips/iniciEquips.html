@@ -70,6 +70,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <tr th:each="equips : ${equips}"> 
                     <td th:text="${equips.categoria}"></td> 
                     <td th:text="${equips.entrenador}"></td>
+                    <td><a th:href="@{/equips/}+${equips.categoria}" th:text="Editar"/></td>
+                    <td><a th:href="@{/equips}+@{/eliminar/}+${equips.categoria}" th:text="Eliminar"/></td>
                 </tr>
             </table>
         </div>

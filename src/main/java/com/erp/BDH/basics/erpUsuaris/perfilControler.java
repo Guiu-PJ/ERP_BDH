@@ -27,9 +27,9 @@ public class perfilControler {
     public String inici(Model model) { //Aquest és el mètode que generarà la resposta (recurs a retornar)
         //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
         //findAll retorna el llistat d'objectes gos guardats en la taula gos de la BBDD    
-        model.addAttribute("gossos", perfilDAO.findAll());
+        model.addAttribute("perfil", perfilDAO.findAll());
 
-        //findByNom és el mètode creat per nosaltres en GosDAO
+        //findByNom és el mètode creat per nosaltres en JugadorsDAO
         var perfil = perfilDAO.findByDni("23434567G");
 
         //Com sé que la consulta anterior només hem retornarà un gos, fem:        
@@ -37,11 +37,11 @@ public class perfilControler {
         var usuariCognom = perfil.get(0).getCognoms();
         var usuariAdreca = perfil.get(0).getAdreca();
          model.addAttribute("usuariAdreca", usuariAdreca);
-        var usuariAnyNaixement = perfil.get(0).getAnyNaixement();
+        var usuariAnyNaixement = perfil.get(0).getAny_naixement();
          model.addAttribute("usuariAnyNaixement", usuariAnyNaixement);
         var usuariDni = perfil.get(0).getDni();
          model.addAttribute("usuariDni", usuariDni);
-        var usuariNumContacte = perfil.get(0).getNumContacte();
+        var usuariNumContacte = perfil.get(0).getNum_contacte();
          model.addAttribute("usuariNumContacte", usuariNumContacte);
         var usuariCategoria = perfil.get(0).getCategoria();
          model.addAttribute("usuariCategoria", usuariCategoria);
@@ -49,7 +49,7 @@ public class perfilControler {
          model.addAttribute("usuariNumero", usuariNumero);
         var usuariQuota = perfil.get(0).getQuota();
          model.addAttribute("usuariQuota", usuariQuota);
-        var usuariTutorLegal = perfil.get(0).getTutorLegal();
+        var usuariTutorLegal = perfil.get(0).getTutor_legal();
          model.addAttribute("usuariTutorLegal", usuariTutorLegal);
 
         

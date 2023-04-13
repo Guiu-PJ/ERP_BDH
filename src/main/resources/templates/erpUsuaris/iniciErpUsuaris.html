@@ -69,10 +69,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       </tr>
       <tr th:each="entrenadors : ${entrenadors}"> 
                     <td th:text="${entrenadors.nom}" onclick="editarEntreanador()" ></td> 
-                    <td th:text="${entrenadors.numContacte}"></td>
+                    <td th:text="${entrenadors.num_contacte}"></td>
                     <td th:text="${entrenadors.salari}"></td> 
-                    <td th:text="${entrenadors.anyNaixement}"></td> 
-                    
+                    <td th:text="${entrenadors.any_naixement}"></td>
+                    <td><a th:href="@{/entrenadors/}+${entrenadors.dni}" th:text="Editar"/></td>
+                    <td><a th:href="@{/entrenadors}+@{/eliminar/}+${entrenadors.dni}" th:text="Eliminar"/></td>
                 </tr>
     </table>
         <a href="nuevoEntrenador">

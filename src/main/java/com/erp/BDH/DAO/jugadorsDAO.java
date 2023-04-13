@@ -14,5 +14,5 @@ import org.springframework.data.repository.CrudRepository;
  * extends CrudRepository<Jugador,String>
  */
 public interface jugadorsDAO extends CrudRepository<Jugador, String> {
-    List<Jugador> findBycategoria(String categoria);
+    List<Jugador> findBydni(String dni);
 }

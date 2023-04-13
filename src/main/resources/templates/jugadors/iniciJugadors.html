@@ -59,11 +59,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
         <br><br>
     <center>
+        <form action="/filtrarJugadors" method="POST">
         <label for="categoria">Categoria:</label>
         <input type="text" id="categoria" name="categoria" placeholder="Escriu la categoria">
         <label style="margin-left: 100px;" for="any">Any neixament:</label>
         <input type="text" id="any" name="any" placeholder="Escriu l'any de naixement">
-        <button style="margin-left: 100px; background-color: #00CCE5; height:30px; width:100px; cursor: pointer"> Aplicar filtres </button>
+        <button style="margin-left: 100px; background-color: #00CCE5; height:30px; width:100px; cursor: pointer" type="submit"> Aplicar filtres </button></form>
         <br><br>
         <div th:if="${jugadors!=null && !jugadors.empty}">
             <table>
@@ -77,7 +78,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <td th:text="${jugadors.nom}"></td> 
                     <td th:text="${jugadors.categoria}"></td>
                     <td th:text="${jugadors.numero}"></td> 
-                    <td th:text="${jugadors.anyNaixement}"></td> 
+                    <td th:text="${jugadors.any_naixement}"></td>
+                    <td><a th:href="${jugadors.dni}" th:text="Editar"/></td>
+                    <td><a th:href="@{/eliminar/}+${jugadors.dni}" th:text="Eliminar"/></td>
                 </tr>
             </table>
         </div>
