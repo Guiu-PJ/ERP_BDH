@@ -87,39 +87,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <div class="toolbar">
             <!-- Logo -->
-            <a href="inici">
-                <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
-            <a href="perfil">
-                <img style="position: relative; left: 1400%; " src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
+            <a href="/inici">
+                <img src="/imatges/logo2.png" alt="Logo" class="logo"></a>
+            <a href="/perfil">
+                <img style="position: relative; left: 1400%; " src="/imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
             <!-- Contenido de la barra de herramientas -->
         </div>
         <!--Deixo al action de guardar gos ja que si no hi ha res dona error al entrar en el formulari-->
-
         <div class="container">
-            <form th:action="@{/guardarGos}" method="post" th:object="${gos}">
+            <form th:action="@{/guardarEntrenador}" method="post" th:object="${entrenador}">
                 <h1>Registrar Entrenador</h1>
                 <label for="adreca">Adreça:</label>
-                <input type="text" id="adreca" name="adreca" placeholder="Escriu la adreça">
+                <input type="text" id="adreca" name="adreca" placeholder="Escriu la adreça" th:field="*{adreca}">
 
-                <label for="nom_cognoms">Nom i Cognoms:</label>
-                <input type="text" id="nom_cognoms" name="nom_cognoms" placeholder="Escriu el nom y cognoms">
+                <label for="nom_cognoms">Nom:</label>
+                <input type="text" id="nom" name="nom" placeholder="Escriu el nom" th:field="*{nom}">
+                
+                <label for="nom_cognoms">Cognoms:</label>
+                <input type="text" id="cognoms" name="cognoms" placeholder="Escriu els cognoms" th:field="*{cognoms}">
 
                 <label for="any_naixement">Any de Naixement:</label>
-                <input type="date" id="any_naixement" name="any_naixement">
+                <input type="number" id="any_naixement" name="any_naixement" th:field="*{any_naixement}">
 
                 <label for="dni">DNI:</label>
-                <input type="text" id="dni" name="dni" placeholder="Escriu el DNI">
+                <input type="text" id="dni" name="dni" placeholder="Escriu el DNI" th:field="*{dni}">
 
                 <label for="telefon">Número de Telèfon:</label>
-                <input type="number" id="telefon" name="telefon" placeholder="Escriu el número de telèfon">
+                <input type="number" id="num_contacte" name="num_contacte" placeholder="Escriu el número de telèfon" th:field="*{num_contacte}">
 
                 <label for="salari">Salari:</label>
-                <input type="number" id="salari" name="salari" placeholder="Escriu el salari">
+                <input type="number" id="salari" name="salari" placeholder="Escriu el salari" th:field="*{salari}">
                 <button>Enviar</button>
             </form>
-            <a href="iniciErpUsuaris">
+            <a href="/iniciErpUsuaris">
                 <button style="background-color: #FF3200">Cancel·lar</button>
-                <button style="background-color: #FF3200">Eliminar</button>
             </a>
         </div>
     </body>

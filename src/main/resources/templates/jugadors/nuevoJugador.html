@@ -96,44 +96,44 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <!--Deixo al action de guardar gos ja que si no hi ha res dona error al entrar en el formulari-->
 
         <div class="container">
-            <form th:action="@{/guardarGos}" method="post" th:object="${gos}">
+            <form th:action="@{/guardarJugador}" method="post" th:object="${jugador}">
                 <h1>Registrar Jugador</h1>
                 <label for="adreca">Adreça:</label>
-                <input type="text" id="adreca" name="adreca" placeholder="Escriu la adreça">
+                <input type="text" id="adreca" name="adreca" placeholder="Escriu la adreça" th:field="*{adreca}">
 
-                <label for="nom_cognoms">Nom i Cognoms:</label>
-                <input type="text" id="nom_cognoms" name="nom_cognoms" placeholder="Escriu el nom y cognoms">
+                <label for="nom_cognoms">Nom</label>
+                <input type="text" id="nom_cognoms" name="nom_cognoms" placeholder="Escriu el nom y cognoms" th:field="*{nom}">
+                
+                <label for="nom_cognoms">Cognoms:</label>
+                <input type="text" id="nom_cognoms" name="nom_cognoms" placeholder="Escriu el nom y cognoms" th:field="*{cognoms}">
 
                 <label for="any_naixement">Any de Naixement:</label>
-                <input type="date" id="any_naixement" name="any_naixement">
+                <input type="number" id="any_naixement" name="any_naixement" th:field="*{any_naixement}">
 
                 <label for="dni">DNI:</label>
-                <input type="text" id="dni" name="dni" placeholder="Escriu el DNI">
+                <input type="text" id="dni" name="dni" placeholder="Escriu el DNI" th:field="*{dni}">
 
                 <label for="telefon">Número de Telèfon:</label>
-                <input type="number" id="telefon" name="telefon" placeholder="Escriu el número de telèfon">
+                <input type="text" id="telefon" name="telefon" placeholder="Escriu el número de telèfon" th:field="*{num_contacte}">
 
                 <label for="categoria">Categoria:</label>
-                <select id="categoria" name="categoria">
-                    <option value="infantil">Infantil</option>
-                    <option value="juvenil">Juvenil</option>
-                    <option value="senior">Senior</option>
+                <select name="categoria">
+                    <option th:each="equips : ${equips}" th:value="${equips.categoria}" th:text="${equips.categoria}" th:field="*{categoria}"></option>
                 </select>
 
                 <label for="numero">Número:</label>
-                <input type="number" id="numero" name="numero" placeholder="Escriu el teu dorsal">
+                <input type="number" id="numero" name="numero" placeholder="Escriu el teu dorsal" th:field="*{numero}">
 
                 <label for="quota">Quota:</label>
-                <input type="number" id="quota" name="quota" placeholder="Escriu la quota que pagara el jugador">
+                <input type="number" id="quota" name="quota" placeholder="Escriu la quota que pagara el jugador" th:field="*{quota}">
 
                 <label for="tutor_legal">Tutor Legal:</label>
-                <input type="text" id="tutor_legal" name="tutor_legal" placeholder="Escriu el nom del tutor legal">
+                <input type="text" id="tutor_legal" name="tutor_legal" placeholder="Escriu el nom del tutor legal" th:field="*{tutor_legal}">
                 <button>Enviar</button>
             </form>
             <a href="iniciJugadors">
                 <button style="background-color: #FF3200">Cancel·lar</button>
             </a>
-            <button style="background-color: #FF3200">Eliminar</button>
         </div>
     </body>
 </html>

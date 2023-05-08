@@ -4,8 +4,13 @@
  */
 package com.erp.BDH.basics.erpUsuaris;
 
+import com.erp.BDH.basics.erpUsuaris.serveis.EntrenadorsService;
+import com.erp.BDH.model.Entrenador;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -13,9 +18,30 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class nuevoEntrenador {
+    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de EntrenadorsService al controlador    
+    private EntrenadorsService entrenadorsService;
+    
     @GetMapping("/nuevoEntrenador")
-    public String inici(){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
+    public String inici(Entrenador entenador){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
         //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
         return "erpUsuaris/nuevoEntrenador"; //Retorn de la pàgina iniciEstatic.html.
     }
+    
+    @GetMapping("/entrenadors/{dni}")
+    public String editar(Entrenador entrenador, Model model) {
+        model.addAttribute("entrenador", entrenadorsService.cercarEntrenador(entrenador));
+
+        return "erpUsuaris/nuevoEntrenador"; //Retorna la pàgina amb el formulari de les dades del gos
+    }
+    
+    @PostMapping("/guardarEntrenador") //action=guardarEquip
+    public String guardarEntrenador(Entrenador entrenador) {
+
+        entrenadorsService.afegirEntrenador(entrenador); //Afegim el gos passat per paràmetre a la base de dades
+
+        return "redirect:/iniciErpUsuaris"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+    }
+    
+    
+    
 }

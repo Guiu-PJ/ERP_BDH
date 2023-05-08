@@ -4,14 +4,21 @@
  */
 package com.erp.BDH.model;
 
+import jakarta.persistence.Entity;
+import java.io.Serializable;
+import lombok.Data;
+
 /**
  *
  * @author guiup
  */
-abstract class Client extends Usuari{
+@Data
+@Entity
+abstract class Client extends Usuari implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String adreca;
-    private int anyNaixement;
-    private String dni;
-    private int numContacte;
+    private String any_naixement;
+    private String num_contacte;
 
 }

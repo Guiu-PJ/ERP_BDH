@@ -20,34 +20,36 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "usuari")
 abstract class Usuari implements Serializable{
     private static final long serialVersionUID = 1L;
     
-    private String nomCognoms;
     @Id
     private String dni;
+    private String nom;
+    private String cognoms;
 
-    public Usuari(String nomCognoms, String dni) {
-        this.nomCognoms = nomCognoms;
-        this.dni = dni;
-    }
-
-    public Usuari() {
-    }
-
-    public String getNomCognoms() {
-        return nomCognoms;
-    }
-
-    public void setNomCognoms(String nomCognoms) {
-        this.nomCognoms = nomCognoms;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
+//    public Usuari(String nomCognoms, String dni) {
+//        this.nomCognoms = nomCognoms;
+//        this.dni = dni;
+//    }
+//
+//    public Usuari() {
+//    }
+//
+//    public String getNomCognoms() {
+//        return nomCognoms;
+//    }
+//
+//    public void setNomCognoms(String nomCognoms) {
+//        this.nomCognoms = nomCognoms;
+//    }
+//
+//    public String getDni() {
+//        return dni;
+//    }
+//
+//    public void setDni(String dni) {
+//        this.dni = dni;
+//    }
 }

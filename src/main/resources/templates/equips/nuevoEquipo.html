@@ -87,31 +87,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <div class="toolbar">
             <!-- Logo -->
-            <a href="inici">
-                <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
-            <a href="perfil">
-                <img style="position: relative; left: 1400%; " src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
+            <a href="/inici">
+                <img src="/imatges/logo2.png" alt="Logo" class="logo"></a>
+            <a href="/perfil">
+                <img style="position: relative; left: 1400%; " src="/imatges/usuarios.png" alt="imgPerfil" class="imgPerfil"></a>
             <!-- Contenido de la barra de herramientas -->
         </div>
         <!--Deixo al action de guardar gos ja que si no hi ha res dona error al entrar en el formulari-->
 
         <div class="container">
-            <form th:action="@{/guardarGos}" method="post" th:object="${gos}">
+            <form th:action="@{/guardarEquips}" method="post" th:object="${equip}">
                 <h1>Registrar Equip</h1>
                 <label for="categoria">Categoria:</label>
-                <input type="text" id="categoria" name="categoria" placeholder="Escriu la categoria">
+                <input type="text" id="categoria" name="categoria" placeholder="Escriu la categoria" th:field="*{categoria}">
 
                 <label for="entrenador">Entrenador:</label>
-                <select id="entrenador" name="entrenador">
-                    <option>John Doe</option>
-                    <option>Jane Smith</option>
-                    <option>Bob Johnson</option>
-                </select>
+                    <select name="entrenador">
+                        <option th:each="entrenadors : ${entrenadors}" th:value="${entrenadors.nom}" th:text="${entrenadors.nom}" th:field="*{entrenador}"></option>
+                    </select>
                 <button>Enviar</button>
             </form>
-            <a href="iniciEquips">
+            <a href="/iniciEquips">
                 <button style="background-color: #FF3200">Cancel·lar</button>
-                <button style="background-color: #FF3200">Eliminar</button>
             </a>
         </div>
 
