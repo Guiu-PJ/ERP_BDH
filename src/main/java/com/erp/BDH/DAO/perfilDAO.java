@@ -4,7 +4,10 @@
  */
 package com.erp.BDH.DAO;
 
+import com.erp.BDH.model.Admin;
+import com.erp.BDH.model.Entrenador;
 import com.erp.BDH.model.Jugador;
+import com.erp.BDH.model.Usuari;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,5 +16,6 @@ import org.springframework.data.repository.CrudRepository;
  * extends CrudRepository<Jugador,String>
  */
 public interface perfilDAO extends CrudRepository<Jugador, String>{
-    List<Jugador> findByDni(String dni);
+    Jugador findByDni(String dni);
+    
 }

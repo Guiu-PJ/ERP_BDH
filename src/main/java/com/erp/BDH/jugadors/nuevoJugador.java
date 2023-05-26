@@ -9,9 +9,12 @@ import com.erp.BDH.DAO.jugadorsDAO;
 import com.erp.BDH.equips.serveis.EquipsService;
 import com.erp.BDH.jugadors.serveis.JugadorsService;
 import com.erp.BDH.model.Jugador;
+import com.erp.BDH.utils.EncriptadorContrasenya;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -35,7 +38,7 @@ public class nuevoJugador {
         return "jugadors/nuevoJugador"; //Retorn de la pàgina iniciEstatic.html.
     }
 
-    @GetMapping("/{dni}")
+    @GetMapping("/nuevoJugador/{dni}")
     public String editar(Jugador jugador, Model model) {
         model.addAttribute("equips", EquipsService.llistarEquips());
         
@@ -45,7 +48,16 @@ public class nuevoJugador {
     }
     
     @PostMapping("/guardarJugador") //action=guardarJugador
-    public String guardarJugador(Jugador jugador) {
+    public String guardarJugador(Model model, @Valid Jugador jugador, Errors errors) {
+        model.addAttribute("equips", EquipsService.llistarEquips());
+        
+        if(errors.hasErrors()){ //Si s'han produït errors...
+             return "jugadors/nuevoJugador"; //Mostrem la pàgina del formulari
+        }
+        
+        String password = jugador.getContrasenya();
+        String  a = EncriptadorContrasenya.encriptarContrasenya(password);
+        jugador.setContrasenya(a);
 
         jugadorsService.afegirJugador(jugador); //Afegim el gos passat per paràmetre a la base de dades
 

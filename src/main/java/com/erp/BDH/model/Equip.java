@@ -7,6 +7,7 @@ package com.erp.BDH.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import lombok.Data;
 
@@ -24,6 +25,7 @@ public class Equip implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id //Indica al sistema que l'atribut idgos és la clau primària de la BBDD
+    @NotEmpty
     private String categoria;
     
     private String entrenador;

@@ -8,6 +8,8 @@ import com.erp.BDH.DAO.equipsDAO;
 import com.erp.BDH.equips.serveis.EquipsService;
 import com.erp.BDH.model.Equip;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,15 @@ public class iniciEquipsControler {
     
    @GetMapping("/iniciEquips")
     public String inici(Model model){ //Aquest és el mètode que generarà zla resposta (recurs a retornar)
-        
+        org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
+        if (esTipoX) {
+            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
+            model.addAttribute("ocultar", true);
+        } else {
+            model.addAttribute("ocultar", false);
+        }
         model.addAttribute("equips", equipsService.llistarEquips());
         //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
         return "equips/iniciEquips"; //Retorn de la pàgina iniciEstatic.html.

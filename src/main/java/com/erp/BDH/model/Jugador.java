@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
 import java.io.Serializable;
 import lombok.Data;
 
@@ -25,6 +26,7 @@ public class Jugador extends Client implements Serializable{
     private static final long serialVersionUID = 1L;
     
     private String categoria;
+    @Pattern(regexp = "[0-9]+([0-9]{1})?")
     private String numero;
     private double quota;
     private String tutor_legal;
@@ -76,6 +78,5 @@ public class Jugador extends Client implements Serializable{
 //    public void setTutorLegal(String tutorLegal) {
 //        this.tutorLegal = tutorLegal;
 //    }
-    
-    
+      
 }

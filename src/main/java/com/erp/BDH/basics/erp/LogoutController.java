@@ -4,6 +4,8 @@
  */
 package com.erp.BDH.basics.erp;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author guiup
  */
+
 @Controller
-public class loginControler {
-    @GetMapping("/login")
-    public String inici(){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
-        //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
-        return "login"; //Retorn de la pàgina iniciEstatic.html.
+public class LogoutController {
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) throws ServletException {
+        request.logout();
+        return "redirect:/login"; // redirigir a la página de inicio de sesión
     }
 }
