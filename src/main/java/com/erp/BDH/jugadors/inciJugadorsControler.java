@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,15 @@ public class inciJugadorsControler {
 
     @GetMapping("/iniciJugadors")
     public String inici(Model model) {
+        org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
+        if (esTipoX) {
+            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
+            model.addAttribute("ocultar", true);
+        } else {
+            model.addAttribute("ocultar", false);
+        }
 
         model.addAttribute("jugadors", jugadorsService.llistarJugadors());
 
@@ -50,7 +61,7 @@ public class inciJugadorsControler {
     @PostMapping("/filtrarJugadors")
     public String filtrar(@RequestParam("categoria")String categoria,@RequestParam("any") String any, Model model){
         
-        List<Jugador> jugadorsFiltrats = a(categoria, any);
+        List<Jugador> jugadorsFiltrats = llistar(categoria, any, model);
         
         
         model.addAttribute("categoria", categoria);
@@ -60,11 +71,17 @@ public class inciJugadorsControler {
         return "jugadors/iniciJugadors";
     }
     
-    public List<Jugador> a(String categoria, String any){
+    public List<Jugador> llistar(String categoria, String any, Model model){
         List<Jugador> jugadorsSenseFiltrar = jugadorsService.llistarJugadors();
         List<Jugador> jugadorsFiltrats;
-        System.out.println(categoria);
-        System.out.println(any);
+        org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
+        if (esTipoX) {
+            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
+            model.addAttribute("ocultar", true);
+        } else {
+            model.addAttribute("ocultar", false);
+        }
         if("".equals(categoria) && !"".equals(any)){
             jugadorsFiltrats = jugadorsSenseFiltrar.stream()
                     .filter(jugador -> jugador.getAny_naixement().equals(any))

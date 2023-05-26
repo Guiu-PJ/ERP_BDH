@@ -2,74 +2,10 @@
 <html>
     <head>
         <title>Perfil</title>
-        <style>
-            .container {
-                background-color: #f2f2f2;
-                padding: 20px;
-                width: 800px;
-                margin: 0 auto;
-                margin-top: 50px;
-                border-radius: 10px;
-            }
-            /* Estilo de la barra de herramientas */
-            .toolbar {
-                background-color: #97FF00;
-                padding: 30px;
-                display: flex;
-                align-items: center;
-            }
 
-            /* Estilo del logo */
-            .logo {
-                width: 75px;
-                height: 75px;
-                margin-right: 5px;
-            }
-
-            /* Estilo img perfil */
-            .imgPerfil {
-                width: 75px;
-                height: 75px;
-                margin-right: 10px;
-            }
-
-            h1 {
-                text-align: center;
-            }
-
-            label {
-                margin-top: 10px;
-            }
-
-            p {
-                margin-top: 5px;
-                margin-bottom: 5px;
-            }
-
-            button {
-                background-color: #4CAF50;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                width: 100%;
-            }
-
-            button:hover {
-                background-color: #45a049;
-            }
-        </style>
     </head>
     <body>
-        <div class="toolbar">
-            <!-- Logo -->
-            <a href="inici">
-                <img src="imatges/logo2.png" alt="Logo" class="logo"></a>
-            <img style="position: absolute;left: 93%;" src="imatges/usuarios.png" alt="imgPerfil" class="imgPerfil">
-            <!-- Contenido de la barra de herramientas -->
-        </div>
+        <header th:replace="~{plantilles/plantillaToolBar :: capcaleraPerfil}" />
     <center>
         <div class="container">
             <h1>Perfil</h1>
@@ -84,12 +20,12 @@
                 <span th:text="${usuariAnyNaixement}"/>
 
                 <b><label style="margin-left: 300px" for="dni">DNI:</label></b>
-               <span th:text="${usuariDni}"/></p>
+                <span th:text="${usuariDni}"/></p>
             <hr size=5 color="#000000">
 
             <p><b><label for="telefon">Número de Telèfon:</label></b>
                 <span th:text="${usuariNumContacte}"/>
-
+                
                 <b><label style="margin-left: 295px" for="categoria">Categoria:</label></b>
                 <span th:text="${usuariCategoria}"/></p>
             <hr size=5 color="#000000">
@@ -103,8 +39,6 @@
 
             <p ><b><label for="tutor_legal">Tutor Legal:</label></b>
                 <span th:text="${usuariTutorLegal}"/></p>
-            <a href="editarPerfil">
-                <button type="submit">Editar Perfil</button></a>
         </div>
     </center>
 </body>

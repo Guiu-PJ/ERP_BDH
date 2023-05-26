@@ -4,12 +4,19 @@
  */
 package com.erp.BDH.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 
 
@@ -20,14 +27,27 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "usuari")
-abstract class Usuari implements Serializable{
-    private static final long serialVersionUID = 1L;
+@Table(name = "Usuari")
+public class Usuari implements Serializable{
+    private static final long serialVersionUID = 1L;          
     
     @Id
+    @Pattern(regexp = "[0-9]{8}[A-Z]")
+    @Column(name="dni")
     private String dni;
+    
+    @NotEmpty
     private String nom;
+    
+    @NotEmpty
     private String cognoms;
+    
+    @NotEmpty
+    private String contrasenya;
+    
+    @ManyToOne //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
+    @JoinColumn(name="rols_idrol") //Columna de la base de dades que farà de clau forana relacionant les dues taules.
+    private Rols rols_idrol;
 
 //    public Usuari(String nomCognoms, String dni) {
 //        this.nomCognoms = nomCognoms;

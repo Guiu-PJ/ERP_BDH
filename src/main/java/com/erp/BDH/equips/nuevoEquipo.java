@@ -7,10 +7,12 @@ package com.erp.BDH.equips;
 import com.erp.BDH.basics.erpUsuaris.serveis.EntrenadorsService;
 import com.erp.BDH.equips.serveis.EquipsService;
 import com.erp.BDH.model.Equip;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -45,8 +47,11 @@ public class nuevoEquipo {
     }
 
     @PostMapping("/guardarEquips") //action=guardarEquip
-    public String guardarEquips(Equip equip) {
-
+    public String guardarEquips(Model model, @Valid Equip equip, Errors errors) {
+        model.addAttribute("entrenadors", entrenadorsService.llistarEntrenador());
+        if(errors.hasErrors()){ //Si s'han produït errors...
+             return "equips/nuevoEquipo"; //Mostrem la pàgina del formulari
+        }
         equipsService.afegirEquip(equip); //Afegim el gos passat per paràmetre a la base de dades
 
         return "redirect:/iniciEquips"; //Retornem a la pàgina inicial dels gossos mitjançant redirect

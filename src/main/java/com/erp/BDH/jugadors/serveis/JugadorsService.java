@@ -21,33 +21,18 @@ public class JugadorsService implements JugadorsServeisInterface{
     
     @Autowired
     private jugadorsDAO jugadorsDAO;
-    
-    
     @Override
     @Transactional(readOnly=true)
     public List<Jugador> llistarJugadors() {
         return (List<Jugador>) jugadorsDAO.findAll(); 
     }
-    
-    
     /*Cercar el jugador passat per paràmetre en la taula jugadors de la BBDD bdh*/
     @Override
     @Transactional(readOnly=true) //Igual que en el mètode llistarJugadors, no modifiquem la informació de la BBDD
     public Jugador cercarJugador(Jugador jugador) {
-        
-        /*Cridem al mètode findById() de CrudRepository perquè ens retorni el gos passat com a paràmetre.
-         *El paràmetre que li passem a aquest mètode, ha de ser la clau primària de l'entitat, en el nostre 
-         *cas el jugador.
-         *
-         *Si el jugador no existei retornarà null (orElse(null)).
-        */ 
-
-        return this.jugadorsDAO.findById(jugador.getDni()).orElse(null);
+         return this.jugadorsDAO.findById(jugador.getDni()).orElse(null);
         
     }
-    
-    //@Override
-    //@Transactional
     @Override
     public void afegirJugador(Jugador jugador) {
         this.jugadorsDAO.save(jugador); 

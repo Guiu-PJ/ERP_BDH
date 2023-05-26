@@ -7,6 +7,8 @@ package com.erp.BDH.basics.erpUsuaris;
 import com.erp.BDH.basics.erpUsuaris.serveis.EntrenadorsService;
 import com.erp.BDH.model.Entrenador;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,15 @@ public class iniciErpUsuaris {
     
    @GetMapping("/iniciErpUsuaris")
     public String inici(Model model){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
+        org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
+        if (esTipoX) {
+            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
+            model.addAttribute("ocultar", true);
+        } else {
+            model.addAttribute("ocultar", false);
+        }
         model.addAttribute("entrenadors", entrenadorsService.llistarEntrenador());
         //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
         return "erpUsuaris/iniciErpUsuaris"; //Retorn de la pàgina iniciEstatic.html.
