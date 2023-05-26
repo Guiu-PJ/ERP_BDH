@@ -25,42 +25,62 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class nuevoJugador {
     
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
+    @Autowired // Anotació que injecta tots els mètodes i possibles dependències de JugadorsService al controlador    
     private JugadorsService jugadorsService;
     
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
-    private EquipsService EquipsService;
+    @Autowired // Anotació que injecta tots els mètodes i possibles dependències de EquipsService al controlador    
+    private EquipsService equipsService;
 
+    /**
+     * Mètode que gestiona la sol·licitud GET a "/nuevoJugador" i mostra la pàgina per afegir un nou jugador.
+     * @param jugador L'objecte jugador.
+     * @param model El model utilitzat per passar dades a la vista.
+     * @return La pàgina per afegir un nou jugador.
+     */
     @GetMapping("/nuevoJugador")
-    public String inici(Jugador jugador, Model model) { //Aquest és el mètode que generarà la resposta (recurs a retornar)
-        model.addAttribute("equips", EquipsService.llistarEquips());
+    public String inici(Jugador jugador, Model model) {
+        model.addAttribute("equips", equipsService.llistarEquips());
         
-        return "jugadors/nuevoJugador"; //Retorn de la pàgina iniciEstatic.html.
+        return "jugadors/nuevoJugador";
     }
 
+    /**
+     * Mètode que gestiona la sol·licitud GET a "/nuevoJugador/{dni}" i mostra la pàgina per editar les dades d'un jugador.
+     * @param jugador L'objecte jugador.
+     * @param model El model utilitzat per passar dades a la vista.
+     * @return La pàgina per editar les dades d'un jugador.
+     */
     @GetMapping("/nuevoJugador/{dni}")
     public String editar(Jugador jugador, Model model) {
-        model.addAttribute("equips", EquipsService.llistarEquips());
+        model.addAttribute("equips", equipsService.llistarEquips());
         
         model.addAttribute("jugador", jugadorsService.cercarJugador(jugador));
 
-        return "jugadors/nuevoJugador"; //Retorna la pàgina amb el formulari de les dades del gos
+        return "jugadors/nuevoJugador";
     }
     
-    @PostMapping("/guardarJugador") //action=guardarJugador
+    /**
+     * Mètode que gestiona la sol·licitud POST a "/guardarJugador" i guarda les dades d'un jugador.
+     * @param model El model utilitzat per passar dades a la vista.
+     * @param jugador L'objecte jugador.
+     * @param errors Objecte Errors que conté els errors de validació.
+     * @return Redirigeix a la pàgina inicial dels jugadors o mostra la pàgina de formulari en cas d'errors.
+     */
+    @PostMapping("/guardarJugador")
     public String guardarJugador(Model model, @Valid Jugador jugador, Errors errors) {
-        model.addAttribute("equips", EquipsService.llistarEquips());
+        model.addAttribute("equips", equipsService.llistarEquips());
         
-        if(errors.hasErrors()){ //Si s'han produït errors...
-             return "jugadors/nuevoJugador"; //Mostrem la pàgina del formulari
+        if(errors.hasErrors()){ // Si s'han produït errors...
+             return "jugadors/nuevoJugador"; // Mostrem la pàgina del formulari
         }
         
         String password = jugador.getContrasenya();
         String  a = EncriptadorContrasenya.encriptarContrasenya(password);
         jugador.setContrasenya(a);
 
-        jugadorsService.afegirJugador(jugador); //Afegim el gos passat per paràmetre a la base de dades
+        jugadorsService.afegirJugador(jugador); // Afegim el jugador passat per paràmetre a la base de dades
 
-        return "redirect:/iniciJugadors"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        return "redirect:/iniciJugadors"; // Redirigeix a la pàgina inicial dels jugadors mitjançant redirect
     }
 }
+

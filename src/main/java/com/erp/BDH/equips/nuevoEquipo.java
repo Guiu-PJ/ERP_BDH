@@ -24,36 +24,58 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 public class nuevoEquipo {
 
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de EntrenadorsService al controlador    
+    @Autowired
     private EntrenadorsService entrenadorsService;
 
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
+    @Autowired
     private EquipsService equipsService;
 
+    /**
+     * Mètode que gestiona la resposta a la sol·licitud GET a "/nuevoEquipo".
+     * Retorna la pàgina "equips/nuevoEquipo" amb els entrenadors disponibles.
+     *
+     * @param equip Objecte Equip per a l'enllaç de dades amb el formulari.
+     * @param model Model per a afegir atributs a la vista.
+     * @return La pàgina "equips/nuevoEquipo".
+     */
     @GetMapping("/nuevoEquipo")
-    public String inici(Equip equip, Model model) { //Aquest és el mètode que generarà la resposta (recurs a retornar)
-
+    public String inici(Equip equip, Model model) {
         model.addAttribute("entrenadors", entrenadorsService.llistarEntrenador());
-        //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
-        return "equips/nuevoEquipo"; //Retorn de la pàgina iniciEstatic.html.
+        return "equips/nuevoEquipo";
     }
 
+    /**
+     * Mètode que gestiona la resposta a la sol·licitud GET a "/equips/{categoria}".
+     * Retorna la pàgina "equips/nuevoEquipo" amb els entrenadors disponibles i les dades de l'equip a editar.
+     *
+     * @param equip Objecte Equip per a l'enllaç de dades amb el formulari.
+     * @param model Model per a afegir atributs a la vista.
+     * @return La pàgina "equips/nuevoEquipo".
+     */
     @GetMapping("/equips/{categoria}")
     public String editar(Equip equip, Model model) {
         model.addAttribute("entrenadors", entrenadorsService.llistarEntrenador());
         model.addAttribute("equip", equipsService.cercarEquip(equip));
-
-        return "equips/nuevoEquipo"; //Retorna la pàgina amb el formulari de les dades del gos
+        return "equips/nuevoEquipo";
     }
 
-    @PostMapping("/guardarEquips") //action=guardarEquip
+    /**
+     * Mètode que gestiona la resposta a la sol·licitud POST a "/guardarEquips".
+     * Guarda l'equip enviat a la base de dades i redirigeix a la pàgina inicial dels equips.
+     *
+     * @param model Model per a afegir atributs a la vista.
+     * @param equip Objecte Equip per a l'enllaç de dades amb el formulari.
+     * @param errors Objecte Errors per a verificar si hi ha errors en les dades del formulari.
+     * @return Redirecció a la pàgina inicial dels equips.
+     */
+    @PostMapping("/guardarEquips")
     public String guardarEquips(Model model, @Valid Equip equip, Errors errors) {
         model.addAttribute("entrenadors", entrenadorsService.llistarEntrenador());
-        if(errors.hasErrors()){ //Si s'han produït errors...
-             return "equips/nuevoEquipo"; //Mostrem la pàgina del formulari
+        if(errors.hasErrors()){
+             return "equips/nuevoEquipo";
         }
-        equipsService.afegirEquip(equip); //Afegim el gos passat per paràmetre a la base de dades
-
-        return "redirect:/iniciEquips"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        equipsService.afegirEquip(equip);
+        return "redirect:/iniciEquips";
     }
 }
+

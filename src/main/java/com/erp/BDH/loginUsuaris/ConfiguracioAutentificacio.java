@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 /*Classe de configuració de Spring Security per configurar l'accés d'usuaris (autenticació).
  *Aquesta classe ha d'extendre de la classe WebSecurityConfigurerAdapter de Spring Security per poder
- *autenticar els usuaaris.
+ *autenticar els usuaris.
  */
 @Configuration //Indica al sistema que és una classe de configuració
 @EnableWebSecurity //Habilita la seguretat web
@@ -32,10 +32,10 @@ public class ConfiguracioAutentificacio {
     private UserDetailsService userDetailsService; //Objecte per recuperar l'usuari
 
     /*AUTENTICACIÓ*/
-    /*Injectem mitjançant @Autowired, els mètodes de la classe AuthenticationManagerBuilder. Mitjançant
-     *aquesta classe cridarem al mètode userDetailsService de la classe AuthenticationManagerBuilder què és el mètode que
-     *realitzarà l'autenticació. Per parm̀etre el sistema li passa l'usuari introduit en el formulari d'autenticació.
-     *Aquest usuari ens el retorna el mètode loadUserByUsername implementat en UsuariService.
+    /*Injectem mitjançant @Autowired, els mètodes de la classe AuthenticationManagerBuilder.
+     *Mitjançant aquesta classe cridarem al mètode userDetailsService de la classe AuthenticationManagerBuilder
+     *que és el mètode que realitzarà l'autenticació. Per paràmetre, el sistema li passa l'usuari introduït
+     *en el formulari d'autenticació. Aquest usuari ens el retorna el mètode loadUserByUsername implementat en UsuariService.
      *
      *Cridem al mètode passwordEncoder passant-li com a paràmetre un objecte de tipus BCryptPasswordEncoder()
      *per encriptar el password introduït per l'usuari en el moment d'autenticar-se i comparar-lo
@@ -47,17 +47,15 @@ public class ConfiguracioAutentificacio {
     }
     
     /*AUTORITZACIÓ*/
-    /*Utilitzem el mètode filterChain per configurar l'accés dels nostre usuaris a l'aplicació, segons
+    /*Utilitzem el mètode filterChain per configurar l'accés dels nostres usuaris a l'aplicació, segons
      *els seus rols, el que s'anomena autoritzar.
      *Passem com a paràmetre un objecte de la classe HttpSecurity de Spring Security que
      *és el que ens permetrà cridar als mètodes per configurar les restriccions d'accés a la nostra aplicació.
     */
-
    
-    @Bean //L'indica al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
+    @Bean //Indiquem al sistema que el mètode és un Bean, en aquest cas perquè crea un objecte de la classe HttpSecurity
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-                return http.csrf().disable().authorizeHttpRequests((requests) -> requests
+        return http.csrf().disable().authorizeRequests((requests) -> requests
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/imatges/**").permitAll()
                 .requestMatchers("/inici").authenticated()
@@ -70,16 +68,13 @@ public class ConfiguracioAutentificacio {
                 .requestMatchers("/nuevoEquipo","/equips/{categoria}","/guardarEquips","/equips/eliminar/{categoria}").hasAnyAuthority("Admin")
                 .requestMatchers("/nuevoEntrenador","/entrenadors/{dni}","/guardarEntrenador","/entrenadors/eliminar/{dni}").hasAnyAuthority("Admin")
                 .anyRequest().authenticated())
-                .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
+            .formLogin((form) -> form //Objecte que representa el formulari de login personalitzat que utilitzarem
                 .loginPage("/login")
-                .defaultSuccessUrl("/inici",true)  //Pàgina on es troba el formulari per fer login personalitzat
-                .permitAll() //Permet acceddir a tothom
-                )
-                .exceptionHandling((exception) -> exception //Quan es produeix una excepcció 403, accés denegat, mostrem el nostre missatge
+                .defaultSuccessUrl("/inici", true)  //Pàgina on es troba el formulari per fer login personalitzat
+                .permitAll() //Permet accedir a tothom
+            )
+            .exceptionHandling((exception) -> exception //Quan es produeix una excepció 403 (accés denegat), mostrem el nostre missatge
                 .accessDeniedPage("/errors/error403"))
-                .build();
-
+            .build();
     }
-    
-    
 }

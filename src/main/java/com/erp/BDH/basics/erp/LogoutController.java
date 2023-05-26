@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LogoutController {
 
+    /**
+     * Controlador per gestionar la funcionalitat de tancament de sessió (logout).
+     * Quan es fa una petició GET a "/logout", es realitza el tancament de sessió de l'usuari
+     * i es redirigeix a la pàgina d'inici de sessió.
+     */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) throws ServletException {
         request.logout();
-        return "redirect:/login"; // redirigir a la página de inicio de sesión
+        return "redirect:/login";
     }
 }

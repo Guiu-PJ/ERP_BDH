@@ -16,34 +16,44 @@ import org.springframework.transaction.annotation.Transactional;
  * @author guiup
  */
 
-@Service 
-public class JugadorsService implements JugadorsServeisInterface{
+@Service
+public class JugadorsService implements JugadorsServeisInterface {
     
     @Autowired
     private jugadorsDAO jugadorsDAO;
+    
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Jugador> llistarJugadors() {
-        return (List<Jugador>) jugadorsDAO.findAll(); 
+        return (List<Jugador>) jugadorsDAO.findAll();
     }
-    /*Cercar el jugador passat per paràmetre en la taula jugadors de la BBDD bdh*/
+    
+    /**
+     * Cerca un jugador a partir del seu dni.
+     * @param jugador L'objecte jugador amb el dni a cercar.
+     * @return El jugador cercat o null si no es troba.
+     */
     @Override
-    @Transactional(readOnly=true) //Igual que en el mètode llistarJugadors, no modifiquem la informació de la BBDD
+    @Transactional(readOnly = true)
     public Jugador cercarJugador(Jugador jugador) {
-         return this.jugadorsDAO.findById(jugador.getDni()).orElse(null);
-        
+        return jugadorsDAO.findById(jugador.getDni()).orElse(null);
     }
+    
+    /**
+     * Afegeix un jugador a la base de dades.
+     * @param jugador L'objecte jugador a afegir.
+     */
     @Override
     public void afegirJugador(Jugador jugador) {
-        this.jugadorsDAO.save(jugador); 
+        jugadorsDAO.save(jugador);
     }
 
+    /**
+     * Elimina un jugador de la base de dades.
+     * @param jugador L'objecte jugador a eliminar.
+     */
     @Override
     public void eliminarJugador(Jugador jugador) {
-        this.jugadorsDAO.delete(jugador);
+        jugadorsDAO.delete(jugador);
     }
-
-    
-    
-    
 }

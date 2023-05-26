@@ -5,16 +5,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  *
  * @author guiup
- */
-
-/*
- * Esta es una clase Java llamada EncriptadorContrasenya que proporciona un método estático para encriptar contraseñas.
- * El método encriptarContrasenya toma una cadena como entrada y devuelve la cadena encriptada utilizando el algoritmo de encriptación BCryptPasswordEncoder de la biblioteca Spring Security.
+ 
+ * Aquesta és una classe Java anomenada EncriptadorContrasenya que proporciona un mètode estàtic per encriptar contrasenyes.
+ * El mètode encriptarContrasenya rep una cadena com a entrada i retorna la cadena encriptada utilitzant l'algoritme d'encriptació BCryptPasswordEncoder de la biblioteca Spring Security.
  */
 public class EncriptadorContrasenya {
     
-    public static String encriptarContrasenya(String password) {
+    public static String encriptarContrasenya(String contrasenya) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder.encode(password);
+        return encoder.encode(contrasenya);
     }
 }

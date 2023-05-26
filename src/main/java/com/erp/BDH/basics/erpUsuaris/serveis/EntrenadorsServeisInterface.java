@@ -12,11 +12,33 @@ import java.util.List;
  * @author guiup
  */
 public interface EntrenadorsServeisInterface {
-    public List<Entrenador> llistarEntrenador(); //Mètode que implementarem per llistar entrenador
-    
-    public void afegirEntrenador(Entrenador entrenador); //Mètode que implementarem per afegir un entrenador
-    
-    public void eliminarEntrenador(Entrenador entrenador); //Mètode que implementarem per eliminar un entrenador
-    
-    public Entrenador cercarEntrenador(Entrenador entrenador); //Mètode que implementarem per cercar un entrenador
+    /**
+     * Retorna una llista de tots els entrenadors.
+     *
+     * @return Llista d'objectes Entrenador.
+     */
+    public List<Entrenador> llistarEntrenador();
+
+    /**
+     * Afegeix un nou entrenador.
+     *
+     * @param entrenador Objecte Entrenador a afegir.
+     */
+    public void afegirEntrenador(Entrenador entrenador);
+
+    /**
+     * Elimina un entrenador existent.
+     *
+     * @param entrenador Objecte Entrenador a eliminar.
+     */
+    public void eliminarEntrenador(Entrenador entrenador);
+
+    /**
+     * Cerca un entrenador amb el mateix identificador.
+     *
+     * @param entrenador Objecte Entrenador a cercar.
+     * @return Objecte Entrenador corresponent o null si no es troba.
+     */
+    public Entrenador cercarEntrenador(Entrenador entrenador);
 }
+

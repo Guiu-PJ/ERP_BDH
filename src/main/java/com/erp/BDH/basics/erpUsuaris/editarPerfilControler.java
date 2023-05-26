@@ -18,51 +18,45 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- *
- * @author guiup
+ * Controlador per a l'edició del perfil d'un usuari.
  */
 @Controller
 public class editarPerfilControler {
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
+    @Autowired
     private JugadorsService jugadorsService;
     
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosDAO al controlador
+    @Autowired
     private perfilDAO perfilDAO;
     
-    /*A l'anotació @GetMapping li passem per paràmetre l'URL on volem que es retorni la resposta,
-    *en el nostre cas, localhost:8080/paginaEstatica (només s'escriu la ruta a partir del domini)
-    *
-    *Aquesta anotació indica al sistema que el mètode que s'ha fet servir per fer la petició al 
-    *servidor és el mètode GET, el qual li demana al servidor quin és el recurs vol que li retorni.
-    */
-   @GetMapping("/editarPerfil")
-    public String inici(Model model){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
-        
+    /**
+     * Mètode per mostrar la pàgina d'inici de l'edició del perfil.
+     * @param model Model per a afegir atributs a la vista.
+     * @return Vista "perfil/editarPerfil".
+     */
+    @GetMapping("/editarPerfil")
+    public String inici(Model model){
         model.addAttribute("perfil", perfilDAO.findAll());
 
-        //findByDni és el mètode creat per nosaltres en JugadorsDAO
         var perfil = perfilDAO.findByDni("23434507G");
-
             
         var usuariNom = perfil.getNom(); 
         var usuariCognom = perfil.getCognoms();
         var usuariAdreca = perfil.getAdreca();
-         model.addAttribute("usuariAdreca", usuariAdreca);
+        model.addAttribute("usuariAdreca", usuariAdreca);
         var usuariAnyNaixement = perfil.getAny_naixement();
-         model.addAttribute("usuariAnyNaixement", usuariAnyNaixement);
+        model.addAttribute("usuariAnyNaixement", usuariAnyNaixement);
         var usuariDni = perfil.getDni();
-         model.addAttribute("usuariDni", usuariDni);
+        model.addAttribute("usuariDni", usuariDni);
         var usuariNumContacte = perfil.getNum_contacte();
-         model.addAttribute("usuariNumContacte", usuariNumContacte);
+        model.addAttribute("usuariNumContacte", usuariNumContacte);
         var usuariCategoria = perfil.getCategoria();
-         model.addAttribute("usuariCategoria", usuariCategoria);
+        model.addAttribute("usuariCategoria", usuariCategoria);
         var usuariNumero = perfil.getNumero();
-         model.addAttribute("usuariNumero", usuariNumero);
+        model.addAttribute("usuariNumero", usuariNumero);
         var usuariQuota = perfil.getQuota();
-         model.addAttribute("usuariQuota", usuariQuota);
+        model.addAttribute("usuariQuota", usuariQuota);
         var usuariTutorLegal = perfil.getTutor_legal();
-         model.addAttribute("usuariTutorLegal", usuariTutorLegal);
-
+        model.addAttribute("usuariTutorLegal", usuariTutorLegal);
         
         var usuariNomICongnoms = usuariNom + " " + usuariCognom;
         model.addAttribute("usuariNomICongnoms", usuariNomICongnoms);
@@ -70,16 +64,20 @@ public class editarPerfilControler {
         return "perfil/editarPerfil";
     }
     
-    @PostMapping("/guardarPerfil") //action=guardarEquip
+    /**
+     * Mètode per guardar els canvis realitzats en el perfil de l'usuari.
+     * @param jugador Objecte jugador amb les dades del perfil actualitzades.
+     * @param errors Objecte Errors per a capturar els errors de validació.
+     * @return Redirecció a la pàgina de perfil.
+     */
+    @PostMapping("/guardarPerfil")
     public String guardarPerfil(@Valid Jugador jugador, Errors errors) {
-
-        if(errors.hasErrors()){ //Si s'han produït errors...
-             return "perfil/editarPerfil"; //Mostrem la pàgina del formulari
+        if(errors.hasErrors()){
+            return "perfil/editarPerfil";
         }
         
-        jugadorsService.afegirJugador(jugador); //Afegim el gos passat per paràmetre a la base de dades
-
-        return "redirect:/perfil/perfil"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        jugadorsService.afegirJugador(jugador);
+        
+        return "redirect:/perfil/perfil";
     }
-    
 }

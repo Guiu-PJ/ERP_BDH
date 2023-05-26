@@ -20,32 +20,46 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class iniciErpUsuaris {
     
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de EntrenadorsService al controlador    
+    @Autowired // Anotació que injecta tots els mètodes i possibles dependències de EntrenadorsService al controlador    
     private EntrenadorsService entrenadorsService;
     
-   @GetMapping("/iniciErpUsuaris")
-    public String inici(Model model){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
+    /**
+     * Controlador per a la pàgina d'inici de l'ERP d'usuaris.
+     * 
+     * @param model Model per a afegir atributs per a la vista.
+     * @return Retorna la vista "erpUsuaris/iniciErpUsuaris".
+     */
+    @GetMapping("/iniciErpUsuaris")
+    public String inici(Model model) {
+        // Obtenim l'autenticació de l'usuari actual
         org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
+        // Comprovem si l'usuari té el rol d'Admin
         boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
         if (esTipoX) {
-            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
+            // Agreguem un atribut al model per indicar que s'ha de mostrar la columna X
             model.addAttribute("ocultar", true);
         } else {
             model.addAttribute("ocultar", false);
         }
+        
+        // Afegim al model la llista d'entrenadors obtinguda del servei
         model.addAttribute("entrenadors", entrenadorsService.llistarEntrenador());
-        //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
-        return "erpUsuaris/iniciErpUsuaris"; //Retorn de la pàgina iniciEstatic.html.
+        
+        return "erpUsuaris/iniciErpUsuaris";
     } 
   
-   @GetMapping("/entrenadors/eliminar/{dni}")
+    /**
+     * Controlador per a l'eliminació d'un entrenador.
+     * 
+     * @param entrenador Entrenador a eliminar.
+     * @return Redirigeix a la pàgina d'inici de l'ERP d'usuaris.
+     */
+    @GetMapping("/entrenadors/eliminar/{dni}")
     public String eliminar(Entrenador entrenador) {
-
-        /*Eliminem el gos passat per paràmetre, al qual li correspón l'idgos de @GetMapping mitjançant 
-         *el mètode eliminarGos de la capa de servei.*/
+        // Eliminem l'entrenador passat per paràmetre, corresponent a l'atribut "dni" de @GetMapping, mitjançant el mètode eliminarEntrenador del servei
         entrenadorsService.eliminarEntrenador(entrenador);
         
-        return "redirect:/iniciErpUsuaris"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        return "redirect:/iniciErpUsuaris";
     }
 }
