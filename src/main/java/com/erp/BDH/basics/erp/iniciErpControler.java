@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class iniciErpControler {
-   @GetMapping("/iniciErp")
-    public String inici(){ //Aquest és el mètode que generarà la resposta (recurs a retornar)
-        //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
-        return "erp/iniciErp"; //Retorn de la pàgina iniciEstatic.html.
-    } 
+    /**
+     * Controlador per a la pàgina d'inici del mòdul ERP.
+     * Retorna la vista "erp/iniciErp".
+     */
+    @GetMapping("/iniciErp")
+    public String inici() {
+        return "erp/iniciErp";
+    }
 }

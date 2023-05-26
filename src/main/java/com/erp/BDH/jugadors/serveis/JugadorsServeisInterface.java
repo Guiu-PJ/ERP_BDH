@@ -12,11 +12,28 @@ import java.util.List;
  * @author guiup
  */
 public interface JugadorsServeisInterface {
-    public List<Jugador> llistarJugadors(); //Mètode que implementarem per llistar jugadors
+    /**
+     * Mètode per obtenir la llista de jugadors.
+     * @return La llista de jugadors.
+     */
+    public List<Jugador> llistarJugadors();
     
-    public void afegirJugador(Jugador jugador); //Mètode que implementarem per afegir un jugador
+    /**
+     * Mètode per afegir un jugador.
+     * @param jugador L'objecte jugador a afegir.
+     */
+    public void afegirJugador(Jugador jugador);
     
-    public void eliminarJugador(Jugador jugador); //Mètode que implementarem per eliminar un jugador
+    /**
+     * Mètode per eliminar un jugador.
+     * @param jugador L'objecte jugador a eliminar.
+     */
+    public void eliminarJugador(Jugador jugador);
     
-    public Jugador cercarJugador(Jugador jugador); //Mètode que implementarem per cercar un jugador
+    /**
+     * Mètode per cercar un jugador.
+     * @param jugador L'objecte jugador a cercar.
+     * @return El jugador cercat o null si no es troba.
+     */
+    public Jugador cercarJugador(Jugador jugador);
 }

@@ -12,11 +12,33 @@ import java.util.List;
  * @author guiup
  */
 public interface EquipsServiceInterface {
-   public List<Equip> llistarEquips(); //Mètode que implementarem per llistar jugadors
-    
-   public void afegirEquip(Equip equip); //Mètode que implementarem per afegir un jugador
-    
-   public void eliminarEquip(Equip equip); //Mètode que implementarem per eliminar un jugador
-    
-    public Equip cercarEquip(Equip equip); //Mètode que implementarem per cercar un jugador
+   /**
+    * Retorna una llista amb tots els equips.
+    *
+    * @return Llista d'equips.
+    */
+   public List<Equip> llistarEquips();
+
+   /**
+    * Afegeix un nou equip a la base de dades.
+    *
+    * @param equip Objecte Equip a afegir.
+    */
+   public void afegirEquip(Equip equip);
+
+   /**
+    * Elimina un equip de la base de dades.
+    *
+    * @param equip Objecte Equip a eliminar.
+    */
+   public void eliminarEquip(Equip equip);
+
+   /**
+    * Cerca un equip a la base de dades segons l'identificador de categoria.
+    *
+    * @param equip Objecte Equip amb l'identificador de categoria a cercar.
+    * @return L'equip corresponent o null si no es troba.
+    */
+   public Equip cercarEquip(Equip equip);
 }
+

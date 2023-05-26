@@ -26,16 +26,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 public class inciJugadorsControler {
 
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de JugadorsService al controlador    
+    @Autowired // Anotació que injecta tots els mètodes i possibles dependències de JugadorsService al controlador    
     private JugadorsService jugadorsService;
 
+    /**
+     * Mètode que gestiona la sol·licitud GET a "/iniciJugadors" i mostra la pàgina d'inici dels jugadors.
+     * @param model El model utilitzat per passar dades a la vista.
+     * @return La pàgina d'inici dels jugadors.
+     */
     @GetMapping("/iniciJugadors")
     public String inici(Model model) {
+        // Obtindre l'autenticació de l'usuari actual
         org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
         if (esTipoX) {
-            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
+            // Afegir un atribut al model per indicar que s'ha de mostrar la columna X
             model.addAttribute("ocultar", true);
         } else {
             model.addAttribute("ocultar", false);
@@ -43,26 +49,35 @@ public class inciJugadorsControler {
 
         model.addAttribute("jugadors", jugadorsService.llistarJugadors());
 
-        //Aquest és el mètode que generarà la resposta (recurs a retornar)
-        //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
-        return "jugadors/iniciJugadors"; //Retorn de la pàgina iniciEstatic.html.
+        return "jugadors/iniciJugadors";
     }
     
+    /**
+     * Mètode que gestiona la sol·licitud GET a "/eliminar/{dni}" i elimina un jugador.
+     * @param jugador El jugador a eliminar.
+     * @return Redirigeix a la pàgina inicial dels jugadors.
+     */
     @GetMapping("/eliminar/{dni}") 
     public String eliminar(Jugador jugador) {
 
-        /*Eliminem el gos passat per paràmetre, al qual li correspón l'idgos de @GetMapping mitjançant 
-         *el mètode eliminarGos de la capa de servei.*/
+        /* Eliminem el jugador passat per paràmetre, al qual li correspon l'idjugador de @GetMapping mitjançant 
+         * el mètode eliminarJugador de la capa de servei. */
         jugadorsService.eliminarJugador(jugador);
         
-        return "redirect:/iniciJugadors"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        return "redirect:/iniciJugadors"; // Redirigeix a la pàgina inicial dels jugadors mitjançant redirect
     }
     
+    /**
+     * Mètode que gestiona la sol·licitud POST a "/filtrarJugadors" i filtra els jugadors segons els criteris seleccionats.
+     * @param categoria La categoria del jugador a filtrar.
+     * @param any L'any de naixement del jugador a filtrar.
+     * @param model El model utilitzat per passar dades a la vista.
+     * @return La pàgina d'inici dels jugadors amb els jugadors filtrats.
+     */
     @PostMapping("/filtrarJugadors")
     public String filtrar(@RequestParam("categoria")String categoria,@RequestParam("any") String any, Model model){
         
         List<Jugador> jugadorsFiltrats = llistar(categoria, any, model);
-        
         
         model.addAttribute("categoria", categoria);
         model.addAttribute("any", any);
@@ -71,13 +86,20 @@ public class inciJugadorsControler {
         return "jugadors/iniciJugadors";
     }
     
+    /**
+     * Mètode que filtra els jugadors segons els criteris seleccionats.
+     * @param categoria La categoria del jugador a filtrar.
+     * @param any L'any de naixement del jugador a filtrar.
+     * @param model El model utilitzat per passar dades a la vista.
+     * @return La llista de jugadors filtrats.
+     */
     public List<Jugador> llistar(String categoria, String any, Model model){
         List<Jugador> jugadorsSenseFiltrar = jugadorsService.llistarJugadors();
         List<Jugador> jugadorsFiltrats;
         org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
         if (esTipoX) {
-            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
+            // Afegir un atribut al model per indicar que s'ha de mostrar la columna X
             model.addAttribute("ocultar", true);
         } else {
             model.addAttribute("ocultar", false);

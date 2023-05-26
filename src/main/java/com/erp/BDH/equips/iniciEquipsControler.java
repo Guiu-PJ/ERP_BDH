@@ -22,32 +22,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class iniciEquipsControler {
-    @Autowired //Anotació que injecta tots els mètodes i possibles dependències de GosService al controlador    
+
+    @Autowired
     private EquipsService equipsService;
-    
-   @GetMapping("/iniciEquips")
-    public String inici(Model model){ //Aquest és el mètode que generarà zla resposta (recurs a retornar)
+
+    /**
+     * Mètode que gestiona la resposta a la sol·licitud GET a "/iniciEquips".
+     * Retorna la pàgina "equips/iniciEquips" amb la llista d'equips i l'estat de visibilitat de la columna X en funció del rol de l'usuari.
+     *
+     * @param model Model per a afegir atributs a la vista.
+     * @return La pàgina "equips/iniciEquips".
+     */
+    @GetMapping("/iniciEquips")
+    public String inici(Model model) {
         org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         boolean esTipoX = auth.getAuthorities().contains(new SimpleGrantedAuthority("Admin"));
         if (esTipoX) {
-            // Agregar un atributo al modelo para indicar que se debe mostrar la columna X
             model.addAttribute("ocultar", true);
         } else {
             model.addAttribute("ocultar", false);
         }
         model.addAttribute("equips", equipsService.llistarEquips());
-        //log.info("Executant el controlador Spring MVC"); //Afegeix al log el missatge passat com a paràmetre.
-        return "equips/iniciEquips"; //Retorn de la pàgina iniciEstatic.html.
-    }  
+        return "equips/iniciEquips";
+    }
 
+    /**
+     * Mètode que gestiona la resposta a la sol·licitud GET a "/equips/eliminar/{categoria}".
+     * Elimina l'equip proporcionat i redirigeix a la pàgina inicial dels equips.
+     *
+     * @param equip Objecte Equip per a eliminar l'equip corresponent.
+     * @return Redirecció a la pàgina inicial dels equips.
+     */
     @GetMapping("/equips/eliminar/{categoria}")
     public String eliminar(Equip equip) {
-
-        /*Eliminem el gos passat per paràmetre, al qual li correspón l'idgos de @GetMapping mitjançant 
-         *el mètode eliminarGos de la capa de servei.*/
         equipsService.eliminarEquip(equip);
-        
-        return "redirect:/iniciEquips"; //Retornem a la pàgina inicial dels gossos mitjançant redirect
+        return "redirect:/iniciEquips";
     }
 }
