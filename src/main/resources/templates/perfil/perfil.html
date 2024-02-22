@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perfil</title>
+
+    </head>
+    <body>
+        <header th:replace="~{plantilles/plantillaToolBar :: capcaleraPerfil}" />
+    <center>
+        <div class="container">
+            <h1>Perfil</h1>
+            <p><b><label for="adreca">Adreça:</label></b>
+                <span th:text="${usuariAdreca}"/>
+
+                <b><label style="margin-left: 250px" for="nom_cognoms">Nom i Cognoms:</label></b>
+                <span th:text="${usuariNomICongnoms}"/></p>
+            <hr size=5 color="#000000">
+
+            <p><b><label for="any_naixement">Any de Naixement:</label></b>
+                <span th:text="${usuariAnyNaixement}"/>
+
+                <b><label style="margin-left: 300px" for="dni">DNI:</label></b>
+                <span th:text="${usuariDni}"/></p>
+            <hr size=5 color="#000000">
+
+            <p><b><label for="telefon">Número de Telèfon:</label></b>
+                <span th:text="${usuariNumContacte}"/>
+                
+                <b><label style="margin-left: 295px" for="categoria">Categoria:</label></b>
+                <span th:text="${usuariCategoria}"/></p>
+            <hr size=5 color="#000000">
+
+            <p><b><label for="numero">Número:</label></b>
+                <span th:text="${usuariNumero}"/>
+
+                <b><label style="margin-left: 425px" for="quota">Quota:</label></b>
+                <span th:text="${usuariQuota}"/></p>
+            <hr size=5 color="#000000">
+
+            <p ><b><label for="tutor_legal">Tutor Legal:</label></b>
+                <span th:text="${usuariTutorLegal}"/></p>
+        </div>
+    </center>
+</body>
+</html>

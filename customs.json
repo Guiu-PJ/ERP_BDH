@@ -1,0 +1,16 @@
+{
+    "elements": {
+        "p": {}
+    },
+    "attributes": {
+        "th:action": {
+            "context": "form"
+        },
+        "th:fragment": {
+            "context": "header"
+        },
+        "th:href": {
+            "context": "link"
+        }
+    }
+}

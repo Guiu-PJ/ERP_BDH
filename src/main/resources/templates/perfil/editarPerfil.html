@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editar Perfil</title>
+        <style>
+            .container {
+                background-color: #f2f2f2;
+                padding: 20px;
+                width: 800px;
+                margin: 0 auto;
+                margin-top: 50px;
+                border-radius: 10px;
+            }
+            
+            h1 {
+                text-align: center;
+            }
+
+            label {
+                margin-top: 10px;
+            }
+
+            p {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <header th:replace="~{plantilles/plantillaToolBar :: capcaleraPerfil}" />
+    <center>
+        <div class="container">
+            <h1>Editar Perfil</h1>
+            <!--Deixo al action de guardar gos ja que si no hi ha res dona error al entrar en el formulari-->
+            <form th:action="@{/guardarPerfil}" method="post" th:object="${Jugador}">
+                <p><b><label for="adreca">Adreça:</label></b>
+                    <input type="text" id="adreca" name="adreca" placeholder="">
+
+                    <b><label style="margin-left: 250px" for="nom_cognoms">Nom i Cognoms:</label></b>
+                    <span th:text="${usuariNomICongnoms}"/></p>
+                <hr size=5 color="#000000">
+
+                <p><b><label for="any_naixement">Any de Naixement:</label></b>
+                     <span th:text="${usuariAnyNaixement}"/>
+
+                    <b><label style="margin-left: 300px" for="dni">DNI:</label></b>
+                    <span th:text="${usuariDni}"/></p></p>
+                <hr size=5 color="#000000">
+
+                <p><b><label for="telefon">Número de Telèfon:</label></b>
+                    <input type="text" id="telefon" name="telefon" style="width: 100px">
+
+                    <b><label style="margin-left: 295px" for="categoria">Categoria:</label></b>
+                    <span th:text="${usuariCategoria}"/></p></p>
+                <hr size=5 color="#000000">
+
+                <p><b><label for="numero">Número:</label></b>
+                    <span th:text="${usuariNumero}"/>
+
+                    <b><label style="margin-left: 425px" for="quota">Quota:</label></b>
+                    <span th:text="${usuariQuota}"/></p>
+                <hr size=5 color="#000000">
+
+                <p ><b><label for="tutor_legal">Tutor Legal:</label></b>
+                    <span th:text="${usuariTutorLegal}"/></p>
+
+                <button type="submit">Confirmar</button>
+            </form>
+            <a href="inici">
+                <button type="submit" style="background-color: #FF3200">Cancel·lar</button>
+            </a>
+        </div>
+    </center>x
+</body>
+</html>
